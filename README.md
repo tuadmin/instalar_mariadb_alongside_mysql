@@ -7,9 +7,15 @@ el problema principal en la instalacion es el hecho de crear todo y de error en 
 
 lo primero es descargar  la version 10 de maria db
 
-https://downloads.mariadb.org/interstitial/mariadb-5.5.60/bintar-linux-x86_64/mariadb-5.5.60-linux-x86_64.tar.gz/from/http%3A//mirror.edatel.net.co/mariadb/?serve&change_mirror_from=1
+https://downloads.mariadb.org/interstitial/mariadb-10.3.8/bintar-linux-x86_64/mariadb-10.3.8-linux-x86_64.tar.gz/from/http%3A//mirror.edatel.net.co/mariadb/?serve&change_mirror_from=1
 ```
 cd /opt
-wget -O mariadb-5.5.60-linux-x86_64.tar.gz https://downloads.mariadb.org/interstitial/mariadb-5.5.60/bintar-linux-x86_64/mariadb-5.5.60-linux-x86_64.tar.gz/from/http%3A//mirror.edatel.net.co/mariadb/?serve&change_mirror_from=1
+wget -O mariadb-10.3.8-linux-x86_64.tar.gz https://downloads.mariadb.org/interstitial/mariadb-10.3.8/bintar-linux-x86_64/mariadb-10.3.8-linux-x86_64.tar.gz/from/http%3A//mirror.edatel.net.co/mariadb/?serve&change_mirror_from=1
 ```
 mientras descarga se procede a realizar la creacion del usuario mariadb y el grupo descritas en la documentacion y el enlace
+
+descargamos el archivo
+
+```
+tar -xzvf mariadb-10.3.8-linux-x86_64.tar.gz
+```
