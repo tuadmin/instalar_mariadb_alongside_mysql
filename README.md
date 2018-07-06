@@ -20,10 +20,11 @@ descargamos el archivo
 tar -xzvf mariadb-10.2.16-linux-x86_64.tar.gz
 ```
 
-*creamos e la carpeta de datos /opt/mariadb-data 
-* link de la carpeta *mariadb-10.2.16-linux-x86_64* a solo mariadb
-*creamos los grupos y usuarios
-*copiamos el archivo de configuracioon
+-creamos e la carpeta de datos /opt/mariadb-data 
+-link de la carpeta *mariadb-10.2.16-linux-x86_64* a solo mariadb
+-creamos los grupos y usuarios
+-copiamos el archivo de configuracioon
+
 ```
 mkdir mariadb-data
 ln -s mariadb-10.2.16-linux-x86_64 mariadb
@@ -36,6 +37,7 @@ chown -R mariadb:mariadb mariadb-data/
 chown -R mariadb:mariadb mariadb
 
 cp mariadb/support-files/my-medium.cnf mariadb-data/my.cnf
+chown mariadb:mariadb /opt/mariadb-data/my.cnf
 ```
 **editamos el my.cnf**
 ```
@@ -55,7 +57,7 @@ coopiamos los archivos  para que se ejecute como demonio
 cp mariadb/support-files/mysql.server /etc/init.d/mariadb
 chmod +x /etc/init.d/mariadb
 ```
-*Editamos /etc/init.d/mariadb reemplazamos **mysql** por **mariadb** como a continuación:
+-Editamos /etc/init.d/mariadb reemplazamos **mysql** por **mariadb** como a continuación:
 ```
 - # Provides: mysql
 + # Provides: mariadb
@@ -79,7 +81,7 @@ wait_for_ready () {
     if $bindir/mysqladmin --defaults-file=/opt/mariadb-data/my.cnf ping >/dev/null 2>&1; then
 ```
 
-*Ejecute mysql_install_db dándole explícitamente el archivo my.cnf como argumento:
+-Ejecute mysql_install_db dándole explícitamente el archivo my.cnf como argumento:
 ```
 cd /opt/mariadb
 scripts/mysql_install_db --defaults-file=/opt/mariadb-data/my.cnf
