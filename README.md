@@ -99,7 +99,7 @@ una vez que hayas probado que inicia se detiene y reinicia con los comandos corr
 # chkconfig --add mariadb 
 # chkconfig --levels 3 mariadb on
 ```
-#ERRORES
+# ERRORES
 en teoria debera de funcionar pero en la version que use y la de este tutorial existe un problema el PID que toma como nombre el del mysql, el cual le dara un falso postiivo al iniciar el servicio, 
 
 busque
