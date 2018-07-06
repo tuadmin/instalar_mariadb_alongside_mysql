@@ -69,3 +69,6 @@ chmod +x /etc/init.d/mariadb
 
 La parte más complicada serán los últimos cambios en este archivo. Necesitas decirle a mariadb que use solo un archivo cnf. En la sección de inicio después de  **$bindir/mysqld_safe** agregue **--defaults-file=/opt/mariadb-data/my.cnf**. Finalmente las líneas deberían verse así:
 
+```
+$bindir/mysqld_safe --defaults-file=/opt/mariadb-data/my.cnf --datadir="$datadir" --pid-file="$mysqld_pid_file_path" $other_args >/dev/null 2>&1 &
+```
