@@ -72,3 +72,28 @@ La parte más complicada serán los últimos cambios en este archivo. Necesitas 
 ```
 $bindir/mysqld_safe --defaults-file=/opt/mariadb-data/my.cnf --datadir="$datadir" --pid-file="$mysqld_pid_file_path" $other_args >/dev/null 2>&1 &
 ```
+El mismo cambio debe realizarse en el comando mysqladmin a continuación en la función **wait_for_ready()** para que el comando mariadb start pueda escuchar correctamente el inicio del servidor. En la función **wait_for_ready()**, después de **$bindir/mysqladmin** agregar --defaults-file=/opt/mariadb-data/my.cnf. Las líneas deben verse así:
+```
+wait_for_ready () {
+[...]
+    if $bindir/mysqladmin --defaults-file=/opt/mariadb-data/my.cnf ping >/dev/null 2>&1; then
+```
+
+*Ejecute mysql_install_db dándole explícitamente el archivo my.cnf como argumento:
+```
+cd /opt/mariadb
+scripts/mysql_install_db --defaults-file=/opt/mariadb-data/my.cnf
+```
+
+Ahora puedes iniciar el demonio de la base de datos MariaDB
+
+```
+# /etc/init.d/mariadb start
+Starting MySQL...                                          [  OK  ]
+```
+una vez que hayas probado que inicia se detiene y reinicia con los comandos correspondientes puedes pasar a que se inicie automaticamente junto al sistema, solo cuando ya probaste todo lo anterior probando que reinicie tambien
+```
+# cd /etc/init.d
+# chkconfig --add mariadb 
+# chkconfig --levels 3 mariadb on
+```
