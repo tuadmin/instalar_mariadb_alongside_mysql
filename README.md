@@ -88,7 +88,7 @@ scripts/mysql_install_db --defaults-file=/opt/mariadb-data/my.cnf
 ```
 
 Ahora puedes iniciar el demonio de la base de datos MariaDB
-
+## Existe un error en este apartado saltese hasta el final ERRORES 
 ```
 # /etc/init.d/mariadb start
 Starting MySQL...                                          [  OK  ]
@@ -99,3 +99,31 @@ una vez que hayas probado que inicia se detiene y reinicia con los comandos corr
 # chkconfig --add mariadb 
 # chkconfig --levels 3 mariadb on
 ```
+#ERRORES
+en teoria debera de funcionar pero en la version que use y la de este tutorial existe un problema el PID que toma como nombre el del mysql, el cual le dara un falso postiivo al iniciar el servicio, 
+
+busque
+```
+case "$mode" in
+  'start')
+    # Start daemon
+
+    # Safeguard (relative paths, core dumps..)
+    cd $basedir
+
+    echo $echo_n "Starting MariaDB"
+```
+y agreguele
+mysqld_pid_file_path=/opt/mariadb-data/mariadb-daemon.pid
+```
+mysqld_pid_file_path=/opt/mariadb-data/mariadb-daemon.pid
+case "$mode" in
+  'start')
+    # Start daemon
+
+    # Safeguard (relative paths, core dumps..)
+    cd $basedir
+
+    echo $echo_n "Starting MariaDB"
+```
+puede volver donde se quedo
